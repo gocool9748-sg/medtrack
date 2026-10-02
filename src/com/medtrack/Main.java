@@ -3,6 +3,7 @@ package com.medtrack;
 import com.medtrack.config.AppConfig;
 import com.medtrack.db.DatabaseManager;
 import com.medtrack.db.DatabaseSeeder;
+import com.medtrack.db.CategorySeeder;
 import com.medtrack.server.AppHttpServer;
 
 public class Main {
