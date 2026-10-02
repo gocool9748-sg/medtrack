@@ -3,7 +3,7 @@
  */
 class ApiClient {
   constructor() {
-    this.baseUrl = '/api';
+    this.baseUrl = window.MEDTRACK_API_URL || '/api';
   }
 
   getToken() {
