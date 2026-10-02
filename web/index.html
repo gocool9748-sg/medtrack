@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedTrack – Medicine Stock & Expiry Management System</title>
+  <meta name="description" content="Professional pharmaceutical inventory, First-Expiry-First-Out (FEFO) batch management, smart expiry prediction, clinical POS billing, and biomedical waste compliance suite.">
+  <meta name="keywords" content="pharmacy management, medicine stock, expiry tracking, FEFO, drug inventory, healthcare POS">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pos.css">
+</head>
+<body>
+
+  <div id="app-root">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="app-sidebar">
+      <a href="#dashboard" class="sidebar-brand">
+        <div class="brand-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+        </div>
+        <div class="brand-title-group">
+          <span class="brand-name">MEDTRACK</span>
+          <span class="brand-tagline">Clinical Enterprise</span>
+        </div>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Operations</div>
+        <a href="#dashboard" class="nav-item active" id="nav-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="#pos" class="nav-item" id="nav-pos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+          <span>POS &amp; Dispensing</span>
+        </a>
+
+        <a href="#inventory" class="nav-item" id="nav-inventory">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          <span>Medicine Catalog</span>
+        </a>
+
+        <a href="#batches" class="nav-item" id="nav-batches">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/></svg>
+          <span>Stock Batches (FEFO)</span>
+        </a>
+
+        <div class="nav-section-title">Expiry &amp; Safety</div>
+        <a href="#expiry" class="nav-item" id="nav-expiry">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Smart Expiry Hub</span>
+          <span class="nav-badge" id="nav-expiry-badge">AI</span>
+        </a>
+
+        <a href="#disposal" class="nav-item" id="nav-disposal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span>Safe Destruction Log</span>
+        </a>
+
+        <div class="nav-section-title">Procurement &amp; Vendors</div>
+        <a href="#orders" class="nav-item" id="nav-orders">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span>Purchase Orders</span>
+        </a>
+
+        <a href="#suppliers" class="nav-item" id="nav-suppliers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
+          <span>Suppliers Directory</span>
+        </a>
+
+        <div class="nav-section-title">Intelligence &amp; System</div>
+        <a href="#analytics" class="nav-item" id="nav-analytics">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          <span>Financial Analytics</span>
+        </a>
+
+        <a href="#audit" class="nav-item" id="nav-audit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+          <span>Security Audit Trail</span>
+        </a>
+
+        <a href="#settings" class="nav-item" id="nav-settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Administration</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar User Footer -->
+      <div class="sidebar-footer">
+        <div class="user-card-mini">
+          <div class="user-avatar" id="sidebar-user-avatar">AD</div>
+          <div class="user-info-text">
+            <div class="user-display-name" id="sidebar-user-name">Dr. Sarah Jenkins</div>
+            <div class="user-role-badge" id="sidebar-user-role">ADMIN</div>
+          </div>
+          <button class="header-action-btn" id="btn-sidebar-logout" style="width: 30px; height: 30px;" title="Sign Out">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Layout Container -->
+    <div class="main-layout">
+      <!-- Top Header -->
+      <header class="top-header" id="app-header">
+        <div class="header-left">
+          <div class="global-search-bar">
+            <svg class="search-icon-pos" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+            <input type="text" id="global-search-input" placeholder="Quick search medicine, batch, invoice, or supplier (Press /)...">
+            <span class="search-shortcut-hint">/</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Live Time Indicator -->
+          <div class="live-clock">
+            <span class="live-pulse-dot"></span>
+            <span id="header-live-time">12:00:00</span>
+          </div>
+
+          <!-- Dark / Light Theme Toggle -->
+          <button class="header-action-btn" id="btn-header-theme-toggle" title="Toggle Dark / Light Theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+
+          <!-- Notifications Alert Bell -->
+          <div style="position: relative;">
+            <button class="header-action-btn" id="btn-header-notifications" title="System Alerts & Expiry Warnings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+              <span class="notification-badge-count" id="header-notif-count" style="display: none;">0</span>
+            </button>
+
+            <!-- Notifications Dropdown -->
+            <div class="dropdown-panel" id="notifications-dropdown">
+              <div class="dropdown-header">
+                <span class="dropdown-title">System &amp; Expiry Alerts</span>
+                <button class="btn btn-secondary btn-sm" id="btn-notif-mark-all" style="font-size: 11px;">Mark All Read</button>
+              </div>
+              <div class="dropdown-body" id="notifications-dropdown-body">
+                <div style="text-align: center; padding: 24px; color: var(--text-muted);">Loading alerts...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Launch POS Quick Button -->
+          <button class="btn-pos-launch" id="btn-header-launch-pos">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            <span>POS Register</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Active Page Viewport -->
+      <main class="content-viewport" id="content-viewport">
+        <!-- SPA View Components mount here -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/components/sound.js"></script>
+  <script src="/js/components/toast.js"></script>
+  <script src="/js/components/modal.js"></script>
+  <script src="/js/components/barcode.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/state.js"></script>
+
+  <!-- Views -->
+  <script src="/js/views/dashboardView.js"></script>
+  <script src="/js/views/inventoryView.js"></script>
+  <script src="/js/views/batchView.js"></script>
+  <script src="/js/views/posView.js"></script>
+  <script src="/js/views/expiryView.js"></script>
+  <script src="/js/views/orderView.js"></script>
+  <script src="/js/views/supplierView.js"></script>
+  <script src="/js/views/disposalView.js"></script>
+  <script src="/js/views/analyticsView.js"></script>
+  <script src="/js/views/auditView.js"></script>
+  <script src="/js/views/settingsView.js"></script>
+  <script src="/js/views/loginView.js"></script>
+
+  <!-- Router & Main App -->
+  <script src="/js/router.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
