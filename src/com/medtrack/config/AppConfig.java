@@ -3,7 +3,7 @@ package com.medtrack.config;
 import java.io.File;
 
 public class AppConfig {
-    public static final int PORT = 8080;
+    public static final int PORT = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
     public static final String DB_DIR = "data";
     public static final String DB_FILE = DB_DIR + File.separator + "medtrack.db";
     public static final String DB_URL = "jdbc:sqlite:" + DB_FILE;
