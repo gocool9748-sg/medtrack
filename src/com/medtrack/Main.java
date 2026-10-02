@@ -24,6 +24,8 @@ public class Main {
             // 2. Seed Realistic Clinical Data if fresh database
             System.out.println("[2/3] Checking & Seeding Healthcare Records...");
             DatabaseSeeder.seedIfNeeded();
+            // Ensure default categories also exist when the database was created by an older build.
+            CategorySeeder.ensureDefaults();
 
             // 3. Start Multi-threaded HTTP Server
             System.out.println("[3/3] Starting MedTrack Server...");
