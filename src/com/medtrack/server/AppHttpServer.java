@@ -31,7 +31,7 @@ public class AppHttpServer {
     private final ExportController exportController = new ExportController(authService);
 
     public AppHttpServer(int port) throws IOException {
-        this.server = HttpServer.create(new InetSocketAddress(port), 0);
+        this.server = HttpServer.create(new InetSocketAddress("0.0.0.0", port), 0);
         this.server.setExecutor(Executors.newCachedThreadPool());
 
         // Map API Context
